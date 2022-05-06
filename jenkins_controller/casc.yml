@@ -8,6 +8,16 @@ jenkins:
     globalMatrix:
       permissions:
       - "USER:Overall/Administer:panda"
+  nodes:
+    - permament:
+      nodeName: "Ulala"
+      numExecutors: 1
+      labelString: "agent"
+      launcher:
+        ssh: 
+          credentialsId: "jenkins_agent"
+          host: "localhost"
+          port: 2222
 credentials:
   system: 
     domainCredentials:
@@ -51,4 +61,4 @@ credentials:
                 o1epS4clbUspxKat9tbIIRccKa9GWXVDNLih8TslLCBoL/knJc+aqw==
                 -----END RSA PRIVATE KEY-----
           scope: GLOBAL
-
+unclassified:
