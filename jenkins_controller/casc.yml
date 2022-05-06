@@ -62,3 +62,18 @@ credentials:
                 -----END RSA PRIVATE KEY-----
           scope: GLOBAL
 unclassified:
+  location:
+    url: "http://localhost:8081"
+  sonarGlobalConfiguration:
+    buildWrapperEnabled: false
+    installations:
+    - name: "local sonarcube in docker"
+      serverUrl: "localhost:9000"
+      triggers:
+        skipScmCause: false
+        skipUpstreamCause: false
+tool:
+  git:
+    installations:
+    - home: "git"
+      name: "Default"
