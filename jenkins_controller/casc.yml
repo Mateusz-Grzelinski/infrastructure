@@ -7,19 +7,23 @@ jenkins:
   authorizationStrategy:
     globalMatrix:
       permissions:
-      - "USER:Overall/Administer:panda"
+        - "Overall/Administer:panda"
+  numExecutors: 0
   nodes:
-    - permament:
-      nodeName: "Ulala"
-      numExecutors: 1
+  - permanent:
       labelString: "agent"
       launcher:
-        ssh: 
+        ssh:
           credentialsId: "jenkins_agent"
-          host: "localhost"
-          port: 2222
+          host: "jenkins_agent"
+          port: 22
+          sshHostKeyVerificationStrategy: "nonVerifyingKeyVerificationStrategy"
+      name: "agent"
+      remoteFS: "/home/jenkins/agent"
+      retentionStrategy: "always"
+
 credentials:
-  system: 
+  system:
     domainCredentials:
     - credentials:
       - usernamePassword:
@@ -61,19 +65,24 @@ credentials:
                 o1epS4clbUspxKat9tbIIRccKa9GWXVDNLih8TslLCBoL/knJc+aqw==
                 -----END RSA PRIVATE KEY-----
           scope: GLOBAL
+tool:
+  sonarRunnerInstallation:
+    installations:
+    - name: "SonarQube"
+      properties:
+      - installSource:
+          installers:
+          - sonarRunnerInstaller:
+              id: "4.7.0.2747"
+
 unclassified:
   location:
-    url: "http://localhost:8081"
+    url: "http://localhost:8880/"
   sonarGlobalConfiguration:
-    buildWrapperEnabled: false
+    buildWrapperEnabled: true
     installations:
-    - name: "local sonarcube in docker"
-      serverUrl: "localhost:9000"
+    - name: "SonarQube"
+      serverUrl: "http://localhost:9000"
       triggers:
         skipScmCause: false
         skipUpstreamCause: false
-tool:
-  git:
-    installations:
-    - home: "git"
-      name: "Default"
