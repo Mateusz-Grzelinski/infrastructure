@@ -1,4 +1,4 @@
-version: '2.7'
+version: '2.4'
 
 services:
   artifactory:
@@ -15,7 +15,7 @@ services:
         start_period: 30s
         interval: 5s
         timeout: 10s
-        retries: 30
+        retries: 60
 
   jenkins:
     depends_on:
